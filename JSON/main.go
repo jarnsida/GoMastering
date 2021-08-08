@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
+
+	//Поля структуры должны быть экспортируемые если
+	//мы хотим чтобы пакет JSON с ними мог работать
 	type CrewwMember struct {
 		ID                int      `json:"id,omitempty"`
 		Name              string   `json:"name"`
@@ -13,12 +16,16 @@ func main() {
 		AccessCodes       []string `json:"accesscodes"`
 	}
 
-	cm := CrewwMember{1, "Jacob", 10, []string{"ADA", "LAL"}}
-
-	b, err := json.Marshal(&cm)
-	if err != nil {
-		fmt.Println("error:", err)
+	type StarShip struct {
+		ShipID    int
+		ShipClass string
+		Capitan   CrewwMember
 	}
 
-	fmt.Println(string(b))
+	sbyte := []byte(`{"ShipID":3,"ShipClass":"Fighter","Capitan":{"id":1,"name":"Jacob","clearanceLevel":10,"accesscodes":["ADA","LAL"]}}`)
+	si := new(StarShip)
+
+	json.Unmarshal(sbyte, si)
+
+	fmt.Println(string(si.ShipClass))
 }
