@@ -10,11 +10,12 @@ func main() {
 		ID                int32
 		Name              string
 		SecurityClearance int32
+		AccessCodes       []string
 	}
 
-	cm := CrewwMember{1, "Jacob", 10}
+	cm := CrewwMember{1, "Jacob", 10, []string{"ADA", "LAL"}}
 
-	b, err := json.Marshal(cm)
+	b, err := json.Marshal(&cm)
 	if err != nil {
 		fmt.Println("error:", err)
 	}
