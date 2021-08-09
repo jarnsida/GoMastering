@@ -22,10 +22,10 @@ func main() {
 		Capitan   CrewwMember
 	}
 
-	sbyte := []byte(`{"ShipID":3,"ShipClass":"Fighter","Capitan":{"id":1,"name":"Jacob","clearanceLevel":10,"accesscodes":["ADA","LAL"]}}`)
-	si := new(StarShip)
+	sbyte := []byte(`[{"id":1,"name":"Jacob","clearanceLevel":10,"accesscodes":["ADA","LAL"]},{"id":2,"name":"Coby","clearanceLevel":15,"accesscodes":["TTL","ALA"]}]`)
+	s := []CrewwMember{}
 
-	json.Unmarshal(sbyte, si)
+	json.Unmarshal(sbyte, &s)
 
-	fmt.Println(string(si.ShipClass))
+	fmt.Println(s)
 }
