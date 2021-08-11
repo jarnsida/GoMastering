@@ -40,19 +40,20 @@ func RandStringRunes(n int) string {
 	b := make([]rune, n)
 	for i := range b {
 		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+		//fmt.Println(b[i])
 	}
 	return string(b)
 }
 func CryptoRandStringRunes(n int) string {
-	safeNum, err := crypto.Int(crypto.Reader, big.NewInt(int64(len(letterRunes))))
-	if err != nil {
-		panic(err)
-	}
 
-	//	r := big.NewInt(int64(len(letterRunes)))
 	b := make([]rune, n)
 	for i := range b {
+		safeNum, err := crypto.Int(crypto.Reader, big.NewInt(int64(len(letterRunes))))
+		if err != nil {
+			panic(err)
+		}
 		b[i] = letterRunes[safeNum.Int64()]
+		//fmt.Println(b[i])
 	}
 	return string(b)
 }
