@@ -4,7 +4,7 @@ import "testing"
 
 // Benchmark functions
 
-const n = 16
+const n = 6
 
 func BenchmarkRunes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
